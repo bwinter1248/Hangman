@@ -64,4 +64,3 @@ int main() {
     const vector<string> words = { "computer", "science", "test" };
     return 0;
 }
-f
