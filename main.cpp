@@ -8,6 +8,22 @@
 
 using namespace std;
 
+vector<string> words = { "computer", "science", "test" };
+
+class RandomNumberGenerator {
+public:
+    RandomNumberGenerator(const vector<string>& vec) : distribution(0, words.size() - 1), generator(rd()) {}
+
+    int generateRandomIndex() {
+        return distribution(generator);
+    }
+
+private:
+    random_device rd;
+    mt19937 generator;
+    uniform_int_distribution<> distribution;
+};
+
 class RandomWordChooser {
 private:
     vector<string> words;
@@ -21,7 +37,10 @@ public:
         if (words.empty())
             return "";
 
-        int randomIndex = rand() % words.size();
+        RandomNumberGenerator rng(words);
+
+
+        int randomIndex = rng.generateRandomIndex();
         return words[randomIndex];
     }
 };
@@ -90,8 +109,6 @@ const string hangmanPic[7] = {
 
 
 int main() {
-    srand((unsigned) time(NULL));
-    const vector<string> words = { "computer", "science", "test" };
     string randomWord = RandomWordChooser(words).chooseRandomWord();
 
     cout << "Random word: " << randomWord << endl;
