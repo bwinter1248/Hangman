@@ -4,4 +4,5 @@ project(Hangman)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(Hangman
-        main.cpp)
+        main.cpp
+        statesQueue.h)

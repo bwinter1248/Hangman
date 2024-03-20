@@ -2,8 +2,7 @@
 #include <vector>
 #include <string>
 #include <random>
-#include <ctime>
-#include <cstdlib>
+#include "statesQueue.h"
 
 
 using namespace std;
@@ -54,6 +53,13 @@ char make_guess()
     // todo check if c is a valid letter!
     return c;
 };
+
+void AddQueue(const string hangmanPic1[], int size) {
+    StateQueue<std::string> q;
+    for (int i = 0; i < size; i++) {
+        q.enqueue(hangmanPic1[i]);
+    }
+}
 // Art Credit - https://gist.github.com/chrishorton/8510732aa9a80a03c829b09f12e20d9c
 const string hangmanPic[7] = {
         " +---+\n"
@@ -110,6 +116,7 @@ const string hangmanPic[7] = {
 
 int main() {
     string randomWord = RandomWordChooser(words).chooseRandomWord();
+    AddQueue(hangmanPic, 7);
 
     cout << "Random word: " << randomWord << endl;
     return 0;
