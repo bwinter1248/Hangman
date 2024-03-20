@@ -96,4 +96,5 @@ public:
         return out;
     }
 };
+
 #endif //HANGMAN_STATESQUEUE_H
