@@ -115,6 +115,9 @@ const string hangmanPic[7] = {
 
 
 int main() {
+    string randomWord = RandomWordChooser(words).chooseRandomWord();
+    AddQueue(hangmanPic, 7);
+
     cout<<"\n"
           " __        _______ _     ____ ___  __  __ _____   _____ ___    _   _    _    _   _  ____ __  __    _    _   _ \n"
           " \\ \\      / / ____| |   / ___/ _ \\|  \\/  | ____| |_   _/ _ \\  | | | |  / \\  | \\ | |/ ___|  \\/  |  / \\  | \\ | |\n"
@@ -127,10 +130,6 @@ int main() {
     int answer;
     cout<< "Pick the game level: \n (1) Easy  \n (2) Medium \n (3) Hard \n (4) Random \n Answer: "<<endl;
     cin >> answer;
-
-
-    string randomWord = RandomWordChooser(words).chooseRandomWord();
-    AddQueue(hangmanPic, 7);
 
     cout << "Random word: " << randomWord << endl;
     
