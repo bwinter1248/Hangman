@@ -8,7 +8,7 @@
 using namespace std;
 
 vector<string> words = { "computer", "science", "test" };
-
+vector<string> hardwords = { "expectopatronum", "Voldemort", "cryptocurrency" };
 class RandomNumberGenerator {
 public:
     RandomNumberGenerator(const vector<string>& vec) : distribution(0, words.size() - 1), generator(rd()) {}
@@ -116,6 +116,7 @@ const string hangmanPic[7] = {
 
 int main() {
     string randomWord = RandomWordChooser(words).chooseRandomWord();
+    string hardrandomWord = RandomWordChooser(hardwords).chooseRandomWord();
     AddQueue(hangmanPic, 7);
 
     cout<<"\n"
@@ -132,6 +133,6 @@ int main() {
     cin >> answer;
 
     cout << "Random word: " << randomWord << endl;
-    
+    cout << "Random word: " << hardrandomWord << endl;
     return 0;
 }
