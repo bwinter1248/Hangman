@@ -7,8 +7,9 @@
 
 using namespace std;
 
-vector<string> words = { "computer", "science", "test" };
-vector<string> hardwords = { "expectopatronum", "Voldemort", "cryptocurrency" };
+vector<string> words = { "chair", "table", "test" };
+vector<string> mediumwords = { "voldemort", "computer", "science" };
+vector<string> hardwords = { "expectopatronum", "benlomond", "cryptocurrency" };
 class RandomNumberGenerator {
 public:
     RandomNumberGenerator(const vector<string>& vec) : distribution(0, words.size() - 1), generator(rd()) {}
@@ -116,6 +117,7 @@ const string hangmanPic[7] = {
 int main() {
 
     string randomWord = RandomWordChooser(words).chooseRandomWord();
+    string mediumrandomWord = RandomWordChooser(mediumwords).chooseRandomWord();
     string hardrandomWord = RandomWordChooser(hardwords).chooseRandomWord();
 
     StateQueue<string> q;
@@ -134,9 +136,14 @@ int main() {
     cout<< "Pick the game level: \n (1) Easy  \n (2) Medium \n (3) Hard \n (4) Random \n Answer: "<<endl;
     cin >> answer;
 
-    cout << "Random word: " << randomWord << endl;
-    cout << "Random word: " << hardrandomWord << endl;
+    if (answer == 1)
+        cout << "Random word: " << randomWord << endl;
+    else if (answer == 2)
+        cout << "Random word: " << mediumrandomWord << endl;
+    else if (answer == 3)
+        cout << "Random word: " << hardrandomWord << endl;
 
+    if (answer)
     while (!q.is_empty()) {
         cout << q << endl;
         q.dequeue();
