@@ -133,5 +133,6 @@ int main() {
     AddQueue(hangmanPic, 7);
 
     cout << "Random word: " << randomWord << endl;
+    
     return 0;
 }
