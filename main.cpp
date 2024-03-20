@@ -54,8 +54,7 @@ char make_guess()
     return c;
 };
 
-void AddQueue(const string hangmanPic1[], int size) {
-    StateQueue<std::string> q;
+void AddQueue(const string hangmanPic1[], int size, StateQueue<string>& q) {
     for (int i = 0; i < size; i++) {
         q.enqueue(hangmanPic1[i]);
     }
@@ -115,9 +114,12 @@ const string hangmanPic[7] = {
 
 
 int main() {
+
     string randomWord = RandomWordChooser(words).chooseRandomWord();
     string hardrandomWord = RandomWordChooser(hardwords).chooseRandomWord();
-    AddQueue(hangmanPic, 7);
+
+    StateQueue<string> q;
+    AddQueue(hangmanPic, 7, q);
 
     cout<<"\n"
           " __        _______ _     ____ ___  __  __ _____   _____ ___    _   _    _    _   _  ____ __  __    _    _   _ \n"
@@ -134,5 +136,11 @@ int main() {
 
     cout << "Random word: " << randomWord << endl;
     cout << "Random word: " << hardrandomWord << endl;
+
+    while (!q.is_empty()) {
+        cout << q << endl;
+        q.dequeue();
+    };
+
     return 0;
 }

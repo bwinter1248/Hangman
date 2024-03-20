@@ -87,10 +87,9 @@ public:
     friend ostream &operator<<(ostream &out, const StateQueue<Type> &q)
     {
         auto temp = q.head;
-        while (temp) {
-            out << temp->value;
-            if (temp->next)
-                out << " ";
+        out << temp->value;
+        if (temp->next) {
+            out << " ";
             temp = temp->next;
         }
         return out;
