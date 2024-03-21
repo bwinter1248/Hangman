@@ -12,7 +12,7 @@ vector<string> mediumwords = { "voldemort", "computer", "science" };
 vector<string> hardwords = { "expectopatronum", "benlomond", "cryptocurrency" };
 class RandomNumberGenerator {
 public:
-    RandomNumberGenerator(const vector<string>& vec) : distribution(0, words.size() - 1), generator(rd()) {}
+    RandomNumberGenerator(const vector<string>& vec, int size) : distribution(0, size), generator(rd()) {}
 
     int generateRandomIndex() {
         return distribution(generator);
@@ -27,17 +27,17 @@ private:
 class RandomWordChooser {
 private:
     vector<string> words;
+    int wsize;
 
 public:
     // Constructor
-    RandomWordChooser(const vector<string>& wordVector) : words(wordVector) {}
+    RandomWordChooser(const vector<string>& wordVector, int size) : words(wordVector), wsize(size){}
 
     // Method to choose a random word
     string chooseRandomWord() {
         if (words.empty())
             return "";
-
-        RandomNumberGenerator rng(words);
+        RandomNumberGenerator rng(words, wsize);
 
 
         int randomIndex = rng.generateRandomIndex();
@@ -115,10 +115,13 @@ const string hangmanPic[7] = {
 
 
 int main() {
+    int eSize = words.size() - 1;
+    int mSize = mediumwords.size() - 1;
+    int hSize = hardwords.size() - 1;
 
-    string randomWord = RandomWordChooser(words).chooseRandomWord();
-    string mediumrandomWord = RandomWordChooser(mediumwords).chooseRandomWord();
-    string hardrandomWord = RandomWordChooser(hardwords).chooseRandomWord();
+    string randomWord = RandomWordChooser(words, eSize).chooseRandomWord();
+    string mediumrandomWord = RandomWordChooser(mediumwords, mSize).chooseRandomWord();
+    string hardrandomWord = RandomWordChooser(hardwords, hSize).chooseRandomWord();
 
     StateQueue<string> q;
     AddQueue(hangmanPic, 7, q);
@@ -143,11 +146,11 @@ int main() {
     else if (answer == 3)
         cout << "Random word: " << hardrandomWord << endl;
 
-    if (answer)
-    while (!q.is_empty()) {
-        cout << q << endl;
-        q.dequeue();
-    };
+//    if (answer)
+//    while (!q.is_empty()) {
+//        cout << q << endl;
+//        q.dequeue();
+//    };
 
     return 0;
 }
