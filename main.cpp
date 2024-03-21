@@ -12,7 +12,7 @@ vector<string> mediumwords = { "voldemort", "computer", "science" };
 vector<string> hardwords = { "expectopatronum", "benlomond", "cryptocurrency" };
 class RandomNumberGenerator {
 public:
-    RandomNumberGenerator(int size) : distribution(0, size), generator(rd()) {}
+    explicit RandomNumberGenerator(int size) : distribution(0, size), generator(rd()) {}
 
     int generateRandomIndex() {
         return distribution(generator);
