@@ -139,6 +139,12 @@ int main() {
     cout<< "Pick the game level: \n (1) Easy  \n (2) Medium \n (3) Hard \n (4) Random \n Answer: "<<endl;
     cin >> answer;
 
+    if (answer == 4) {
+        RandomNumberGenerator tempRNG(2);
+        int temp = tempRNG.generateRandomIndex();
+        answer = temp + 1;
+    }
+
     if (answer == 1)
         cout << "Random word: " << randomWord << endl;
     else if (answer == 2)
