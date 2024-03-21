@@ -12,7 +12,7 @@ vector<string> mediumwords = { "voldemort", "computer", "science" };
 vector<string> hardwords = { "expectopatronum", "benlomond", "cryptocurrency" };
 class RandomNumberGenerator {
 public:
-    RandomNumberGenerator(const vector<string>& vec, int size) : distribution(0, size), generator(rd()) {}
+    RandomNumberGenerator(int size) : distribution(0, size), generator(rd()) {}
 
     int generateRandomIndex() {
         return distribution(generator);
@@ -37,7 +37,7 @@ public:
     string chooseRandomWord() {
         if (words.empty())
             return "";
-        RandomNumberGenerator rng(words, wsize);
+        RandomNumberGenerator rng(wsize);
 
 
         int randomIndex = rng.generateRandomIndex();
@@ -146,11 +146,10 @@ int main() {
     else if (answer == 3)
         cout << "Random word: " << hardrandomWord << endl;
 
-//    if (answer)
-//    while (!q.is_empty()) {
-//        cout << q << endl;
-//        q.dequeue();
-//    };
+    while (!q.is_empty()) {
+        cout << q << endl;
+        q.dequeue();
+    };
 
     return 0;
 }
