@@ -119,7 +119,7 @@ int main() {
     int mSize = mediumwords.size() - 1;
     int hSize = hardwords.size() - 1;
 
-    string randomWord = RandomWordChooser(words, eSize).chooseRandomWord();
+    string easyrandomWord = RandomWordChooser(words, eSize).chooseRandomWord();
     string mediumrandomWord = RandomWordChooser(mediumwords, mSize).chooseRandomWord();
     string hardrandomWord = RandomWordChooser(hardwords, hSize).chooseRandomWord();
 
@@ -139,23 +139,41 @@ int main() {
     cout<< "Pick the game level: \n (1) Easy  \n (2) Medium \n (3) Hard \n (4) Random \n Answer: "<<endl;
     cin >> answer;
 
+    string randWord ="";
+
     if (answer == 4) {
         RandomNumberGenerator tempRNG(2);
         int temp = tempRNG.generateRandomIndex();
         answer = temp + 1;
     }
 
-    if (answer == 1)
-        cout << "Random word: " << randomWord << endl;
-    else if (answer == 2)
+    if (answer == 1) {
+        randWord = easyrandomWord;
+        cout << "Random word: " << easyrandomWord << endl;
+    }
+    else if (answer == 2) {
+        randWord = mediumrandomWord;
         cout << "Random word: " << mediumrandomWord << endl;
-    else if (answer == 3)
+    }
+    else if (answer == 3) {
+        randWord = hardrandomWord;
         cout << "Random word: " << hardrandomWord << endl;
+    } else {
+        cout << "Invalid answer" << endl;
+    }
+
+    char realWord[randWord.length() - 1];
+    char guessWord[randWord.length() - 1];
+    for(char& c : randWord) {
+        guessWord[c] = '_';
+    }
 
     while (!q.is_empty()) {
         cout << q << endl;
         q.dequeue();
-    };
+        make_guess();
+
+    }
 
     return 0;
 }
